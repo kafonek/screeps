@@ -1,6 +1,8 @@
 if __name__ == '__main__':
 	import sys
-	print(sys.argv)
+	commit_msg = None
+	if len(sys.argv) > 1:
+		commit_msg = ' '.join(sys.argv[1:])
 	import glob
 	files = ['main.py'] + [f for f in glob.glob('*.py') if f not in ['main.py', 'commit.py']]
 
@@ -16,6 +18,9 @@ if __name__ == '__main__':
 	run(cmd)
 
 	run('git add .')
-	run('git commit -m "updating" .')
+	if not commit_msg:
+		run('git commit -m "updates" .')
+	else:
+		run('git commit -m "%s" .' % commit_msg)
 	run('git push')
 
