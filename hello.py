@@ -1,4 +1,5 @@
 def main():
+	print('working')
 	creep = Game.creeps['Harvester1']
 	sources = creep.room.find(FIND_SOURCES)
 	if creep.carry.energy < creep.carryCapacity:

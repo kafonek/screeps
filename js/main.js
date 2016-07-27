@@ -3,6 +3,7 @@ var __name__ = "__main__";
 
 function main() {
     var creep, sources;
+    ՐՏ_print("working");
     creep = Game.creeps["Harvester1"];
     sources = creep.room.find(FIND_SOURCES);
     if (creep.carry.energy < creep.carryCapacity) {
