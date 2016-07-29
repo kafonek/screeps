@@ -1,14 +1,13 @@
 from subprocess import Popen, PIPE
+import os
+import glob
+
 def run(cmd):
 	proc = Popen(cmd, stdout=PIPE, shell=True)
 	text = proc.communicate()[0]
 	return text
 
-if __name__ == '__main__':
-	import sys, os, glob
-	commit_msg = None
-	if len(sys.argv) > 1:
-		commit_msg = ' '.join(sys.argv[1:])
+def rapyd():
 	root, directories, files = next(os.walk('.'))
 	for directory in directories:
 		if '.' not in directory:
@@ -20,8 +19,10 @@ if __name__ == '__main__':
 			outfile = os.path.join(directory, 'js', 'main.js')
 
 			cmd = 'rapydscript %s -pbm --output %s' % (' '.join(files), outfile)
+			print(cmd)
 			run(cmd)
 
+def commit(commit_msg=None):
 	# Commit everything in the project
 	run('git add .')
 	if not commit_msg:
@@ -29,4 +30,19 @@ if __name__ == '__main__':
 	else:
 		run('git commit -m "%s" .' % commit_msg)
 	run('git push')
+
+
+if __name__ == '__main__':
+	import argparse
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-n', '--no_commit', action='store_true', default=False, help="No-commit, doesn't push to github")
+	parser.add_argument('-m', '--message', default=None, nargs='+', help="(optional) commit message on git commit")
+	args = parser.parse_args()
+	
+	rapyd()
+	if not args.no_commit:
+		commit(args.message)
+
+
+	
 
