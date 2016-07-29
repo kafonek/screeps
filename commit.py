@@ -14,7 +14,7 @@ if __name__ == '__main__':
 		return text
 
 
-	cmd = 'rapydscript %s -pbm' % ' '.join(files)
+	cmd = 'rapydscript %s -pbm --output js/main.js' % ' '.join(files)
 	run(cmd)
 
 	run('git add .')
