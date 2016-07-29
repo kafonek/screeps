@@ -1,6 +1,6 @@
 def main():
-	console.log('updated')
-	
+	console.log('updated again')
+
 	
 
 module.exports.loop = main()
