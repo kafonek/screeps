@@ -1,22 +1,28 @@
+from subprocess import Popen, PIPE
+def run(cmd):
+	proc = Popen(cmd, stdout=PIPE, shell=True)
+	text = proc.communicate()[0]
+	return text
+
 if __name__ == '__main__':
-	import sys
+	import sys, os, glob
 	commit_msg = None
 	if len(sys.argv) > 1:
 		commit_msg = ' '.join(sys.argv[1:])
-	import glob
-	files = ['main.py'] + [f for f in glob.glob('*.py') if f not in ['main.py', 'commit.py']]
+	root, directories, files = next(os.walk('.'))
+	for directory in directories:
+		if '.' not in directory:
+			files = glob.glob('%s/*.py' % directory)
+			# Put main.py at the front of the list just for readability in the javascript
+			index = files.index(os.path.join(directory, 'main.py'))
+			files.insert(0, files.pop(index))
 
+			outfile = os.path.join(directory, 'js', 'main.js')
 
-	from subprocess import Popen, PIPE
-	def run(cmd):
-		proc = Popen(cmd, stdout=PIPE, shell=True)
-		text = proc.communicate()[0]
-		return text
+			cmd = 'rapydscript %s -pbm --output %s' % (' '.join(files), outfile)
+			run(cmd)
 
-
-	cmd = 'rapydscript %s -pbm --output js/main.js' % ' '.join(files)
-	run(cmd)
-
+	# Commit everything in the project
 	run('git add .')
 	if not commit_msg:
 		run('git commit -m "updates" .')
