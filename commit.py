@@ -24,6 +24,8 @@ def rapyd():
 
 def commit(commit_msg=None):
 	# Commit everything in the project
+	if isinstance(commit_msg, list):
+		commit_msg = ' '.join(commit_msg)
 	run('git add .')
 	if not commit_msg:
 		run('git commit -m "updates" .')
@@ -38,6 +40,7 @@ if __name__ == '__main__':
 	parser.add_argument('-n', '--no_commit', action='store_true', default=False, help="No-commit, doesn't push to github")
 	parser.add_argument('-m', '--message', default=None, nargs='+', help="(optional) commit message on git commit")
 	args = parser.parse_args()
+
 	
 	rapyd()
 	if not args.no_commit:
