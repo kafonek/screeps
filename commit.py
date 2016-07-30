@@ -22,14 +22,10 @@ def rapyd():
 			print(cmd)
 			run(cmd)
 			### replace rS symbol because screeps can't handle the unicode in the js file
-			with open(outfile, 'r+') as f:
-				text = f.read()
-				rs_symbol = ' \xd5\x90\xd5\x8f'
-				text = text.replace(rs_symbol, '__rapydscript')
-				print(outfile)
-				print(text)
-				print('')
-				f.truncate() # clear all text out
+			text = open(outfile).read()
+			rs_symbol = ' \xd5\x90\xd5\x8f'
+			text = text.replace(rs_symbol, '__rapydscript')
+			with open(outfile, 'w') as f:
 				f.write(text)
 			
 
