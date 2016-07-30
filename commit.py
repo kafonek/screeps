@@ -18,7 +18,7 @@ def rapyd():
 
 			outfile = os.path.join(directory, 'js', 'main.js')
 
-			cmd = 'rapydscript %s -pbm --output %s' % (' '.join(files), outfile)
+			cmd = 'rapydscript %s -pb --output %s' % (' '.join(files), outfile)
 			print(cmd)
 			run(cmd)
 			### replace rS symbol because screeps can't handle the unicode in the js file
