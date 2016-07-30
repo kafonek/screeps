@@ -1,7 +1,7 @@
 def main():
 	#console.log('working')
-	for name in Game.rooms:
-		console.log(name)
+	#for name in Game.rooms:
+		#console.log(name)
 
 	
 
