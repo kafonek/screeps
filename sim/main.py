@@ -1,5 +1,5 @@
 def main():
-	console.log('updated again')
+	pass
 
 	
 
