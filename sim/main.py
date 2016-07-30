@@ -1,5 +1,6 @@
 def main():
-	pass
+	for creep in Game.creeps:
+		roleHarvester.run(creep)
 
 	
 
