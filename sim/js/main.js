@@ -96,7 +96,6 @@ var __name__ = "__main__";
 
 function main() {
     var creep;
-    console.log("working");
     var __rapydscript_Iter3 = __rapydscript_Iterable(Game.creeps);
     for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
         creep = __rapydscript_Iter3[__rapydscript_Index3];
