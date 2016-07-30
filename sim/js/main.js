@@ -57,9 +57,9 @@ function eq(a, b) {
                 }
             }
         } else {
-            var __rapydscript_Iter2 = __rapydscript_Iterable(a);
-            for (var __rapydscript_Index2 = 0; __rapydscript_Index2 < __rapydscript_Iter2.length; __rapydscript_Index2++) {
-                i = __rapydscript_Iter2[__rapydscript_Index2];
+            var __rapydscript_Iter4 = __rapydscript_Iterable(a);
+            for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
+                i = __rapydscript_Iter4[__rapydscript_Index4];
                 if (!eq(a[i], b[i])) {
                     return false;
                 }
@@ -95,11 +95,11 @@ function __rapydscript_extends(child, parent) {
 var __name__ = "__main__";
 
 function main() {
-    var creep;
-    var __rapydscript_Iter3 = __rapydscript_Iterable(Game.creeps);
-    for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
-        creep = __rapydscript_Iter3[__rapydscript_Index3];
-        roleHarvester.run(creep);
+    var name;
+    var __rapydscript_Iter5 = __rapydscript_Iterable(Game.rooms);
+    for (var __rapydscript_Index5 = 0; __rapydscript_Index5 < __rapydscript_Iter5.length; __rapydscript_Index5++) {
+        name = __rapydscript_Iter5[__rapydscript_Index5];
+        console.log(name);
     }
 }
 module.exports.loop = main();

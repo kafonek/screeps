@@ -1,7 +1,7 @@
 def main():
 	#console.log('working')
-	for creep in Game.creeps:
-		roleHarvester.run(creep)
+	for name in Game.rooms:
+		console.log(name)
 
 	
 
