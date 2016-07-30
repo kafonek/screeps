@@ -19,6 +19,8 @@ def rapyd():
 			outfile = os.path.join(directory, 'js', 'main.js')
 
 			cmd = 'rapydscript %s -pbm --output %s' % (' '.join(files), outfile)
+			print(cmd)
+			run(cmd)
 			### replace rS symbol because screeps can't handle the unicode in the js file
 			with open(outfile, 'r+') as f:
 				text = f.read()
@@ -26,8 +28,7 @@ def rapyd():
 				text = text.replace(rs_symbol, '__rapydscript')
 				f.truncate() # clear all text out
 				f.write(text)
-			print(cmd)
-			run(cmd)
+			
 
 def commit(commit_msg=None):
 	# Commit everything in the project
