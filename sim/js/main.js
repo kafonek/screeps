@@ -121,7 +121,7 @@ function main() {
     var __rapydscript_Iter4 = __rapydscript_Iterable(Game.rooms);
     for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
         name = __rapydscript_Iter4[__rapydscript_Index4];
-        manager = CreepManager(Games.rooms[name]);
+        manager = CreepManager(Game.rooms[name]);
     }
 }
 module.exports.loop = main();

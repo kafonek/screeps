@@ -5,7 +5,7 @@ def main():
 		print(Game.time)
 
 	for name in Game.rooms:
-		manager = CreepManager(Games.rooms[name])
+		manager = CreepManager(Game.rooms[name])
 		
 
 	
