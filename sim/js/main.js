@@ -106,7 +106,7 @@ CreepManager.prototype.__init__ = function __init__(roomname){
     var self = this;
     self.room = Game.rooms[roomname];
     self.creeps = self.room.find(FIND_MY_CREEPS);
-    self.spawn = self.room.find(FIND_MY_SPAWNS);
+    self.spawn = self.room.find(FIND_MY_SPAWNS)[0];
     __rapydscript_print(self.spawn);
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
