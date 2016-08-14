@@ -21,14 +21,10 @@ class CreepManager:
 		
 
 class Creep:
-	def name(self):
-		return None
-
-	def body(self):
-		return []
-
-	def memory(self):
-		return {}
+	def __init__(self):
+		self.body = []
+		self.memory = {}
+		self.name = None
 
 class BasicHarvester(Creep):
 	pass

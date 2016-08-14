@@ -126,18 +126,13 @@ CreepManager.prototype.spawnManager = function spawnManager(){
 };
 
 function Creep() {
+    Creep.prototype.__init__.apply(this, arguments);
 }
-Creep.prototype.name = function name(){
+Creep.prototype.__init__ = function __init__(){
     var self = this;
-    return null;
-};
-Creep.prototype.body = function body(){
-    var self = this;
-    return [];
-};
-Creep.prototype.memory = function memory(){
-    var self = this;
-    return {};
+    self.body = [];
+    self.memory = {};
+    self.name = null;
 };
 
 function BasicHarvester() {
