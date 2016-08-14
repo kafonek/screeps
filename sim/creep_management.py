@@ -12,15 +12,15 @@ class CreepManager:
 
 
 	def spawnManager(self):
-		creep = new Creep()
+		creep = new Duder()
 		print(creep)
 
-class Creep:
+class Duder:
 	def __init__(self):
 		self.body = []
 
 
-class BasicHarvester(Creep):
+class BasicHarvester(Duder):
 	pass
 
 

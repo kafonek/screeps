@@ -118,14 +118,14 @@ CreepManager.prototype.__init__ = function __init__(roomname){
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
     var creep;
-    creep = new Creep();
+    creep = new Duder();
     __rapydscript_print(creep);
 };
 
-function Creep() {
-    Creep.prototype.__init__.apply(this, arguments);
+function Duder() {
+    Duder.prototype.__init__.apply(this, arguments);
 }
-Creep.prototype.__init__ = function __init__(){
+Duder.prototype.__init__ = function __init__(){
     var self = this;
     self.body = [];
 };
@@ -133,7 +133,7 @@ Creep.prototype.__init__ = function __init__(){
 function BasicHarvester() {
     BasicHarvester.prototype.__init__.apply(this, arguments);
 }
-__rapydscript_extends(BasicHarvester, Creep);
+__rapydscript_extends(BasicHarvester, Duder);
 
 
 function roleHarvester() {
