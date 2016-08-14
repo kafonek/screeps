@@ -1,14 +1,12 @@
-__rapydscript_print = console.log
+__rapydscript_print = console.log  ### Let us use print() instead of console.log()
 
 def main():
-
 	if Game.time % 5 == 0:
 		print(Game.time)
+
 	for name in Game.rooms:
-		room = Game.rooms[name]
-		creeps = room.find(FIND_MY_CREEPS)
-		if len(creeps) == 0:
-			print("No Creeps spawned")
+		manager = CreepManager(room)
+		manager.print_creeps()
 
 	
 

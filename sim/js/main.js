@@ -101,21 +101,31 @@ var __name__ = "__main__";
 
 __rapydscript_print = console.log;
 function main() {
-    var room, creeps, name;
+    var manager, name;
     if (Game.time % 5 === 0) {
         __rapydscript_print(Game.time);
     }
     var __rapydscript_Iter5 = __rapydscript_Iterable(Game.rooms);
     for (var __rapydscript_Index5 = 0; __rapydscript_Index5 < __rapydscript_Iter5.length; __rapydscript_Index5++) {
         name = __rapydscript_Iter5[__rapydscript_Index5];
-        room = Game.rooms[name];
-        creeps = room.find(FIND_MY_CREEPS);
-        if (len(creeps) === 0) {
-            __rapydscript_print("No Creeps spawned");
-        }
+        manager = CreepManager(room);
+        manager.print_creeps();
     }
 }
 module.exports.loop = main();
+function CreepManager() {
+    CreepManager.prototype.__init__.apply(this, arguments);
+}
+CreepManager.prototype.__init__ = function __init__(room){
+    var self = this;
+    self.room = Game.rooms[room];
+    self.creeps = self.room.find(FIND_MY_CREEPS);
+};
+CreepManager.prototype.print_creeps = function print_creeps(){
+    var self = this;
+    __rapydscript_print("%s Creeps spawned in %s" % [len(self.creeps), self.room]);
+};
+
 function roleHarvester() {
 }
 roleHarvester.prototype.run = function run(creep){
