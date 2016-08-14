@@ -4,8 +4,8 @@ def main():
 	if Game.time % 5 == 0:
 		print(Game.time)
 
-	manager = CreepManager()
-	manager.run("test")
+	manager = new CreepManager("test")
+	
 
 
 module.exports.loop = main()
