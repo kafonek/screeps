@@ -118,17 +118,18 @@ CreepManager.prototype.__init__ = function __init__(roomname){
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
     var creep;
-    creep = new Unit(self.spawn);
-    __rapydscript_print(creep);
+    if (len(self.creeps) < 1) {
+        creep = new BasicHarvester(self.spawn);
+    }
 };
 
 function Unit() {
     Unit.prototype.__init__.apply(this, arguments);
 }
 "I'd call this a Creep but it breaks the game?";
+Unit.prototype.body = [];
 Unit.prototype.__init__ = function __init__(spawner){
     var self = this;
-    self.body = [];
     self.spawner = spawner;
     __rapydscript_print(self.spawner._name);
 };

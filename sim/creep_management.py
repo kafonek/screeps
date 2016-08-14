@@ -12,13 +12,14 @@ class CreepManager:
 
 
 	def spawnManager(self):
-		creep = new Unit(self.spawn)
-		print(creep)
+		if len(self.creeps) < 1:
+			creep = new BasicHarvester(self.spawn)
+			
 
 class Unit:
 	"I'd call this a Creep but it breaks the game?"
+	body = []
 	def __init__(self, spawner):
-		self.body = []
 		self.spawner = spawner
 		print(self.spawner._name)
 
