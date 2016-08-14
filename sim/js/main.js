@@ -108,7 +108,7 @@ function main() {
     var __rapydscript_Iter5 = __rapydscript_Iterable(Game.rooms);
     for (var __rapydscript_Index5 = 0; __rapydscript_Index5 < __rapydscript_Iter5.length; __rapydscript_Index5++) {
         name = __rapydscript_Iter5[__rapydscript_Index5];
-        manager = CreepManager(room);
+        manager = CreepManager(name);
         manager.print_creeps();
     }
 }
