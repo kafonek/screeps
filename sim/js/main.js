@@ -125,18 +125,18 @@ CreepManager.prototype.spawnManager = function spawnManager(){
     }
 };
 
-function Unit() {
-    Unit.prototype.__init__.apply(this, arguments);
+function Creep() {
+    Creep.prototype.__init__.apply(this, arguments);
 }
 "I'd call this a Creep but it breaks the game?";
-Unit.prototype.body = [];
-Unit.prototype.memory = {};
-Unit.prototype.name = null;
-Unit.prototype.__init__ = function __init__(spawner){
+Creep.prototype.body = [];
+Creep.prototype.memory = {};
+Creep.prototype.name = null;
+Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
 };
-Unit.prototype.spawn = function spawn(){
+Creep.prototype.spawn = function spawn(){
     var self = this;
     var resp;
     resp = self.spawner.canCreateCreep(self.body, self.name);
@@ -148,7 +148,7 @@ Unit.prototype.spawn = function spawn(){
 function BasicHarvester() {
     BasicHarvester.prototype.__init__.apply(this, arguments);
 }
-__rapydscript_extends(BasicHarvester, Unit);
+__rapydscript_extends(BasicHarvester, Creep);
 BasicHarvester.prototype.body = [ WORK, MOVE, CARRY ];
 
 
