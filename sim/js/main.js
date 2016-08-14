@@ -105,7 +105,7 @@ function CreepManager() {
 CreepManager.prototype.__init__ = function __init__(room){
     var self = this;
     self.room = room;
-    __rapydscript_print("CreepManager init for %s" % self.room);
+    __rapydscript_print("CreepManager init for " + self.room);
 };
 CreepManager.prototype.print_creeps = function print_creeps(){
     var self = this;
