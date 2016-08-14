@@ -117,7 +117,7 @@ CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
     var creep;
     if (len(self.creeps) < 2) {
-        creep = BasicHarvester(self.spawn);
+        creep = new BasicHarvester(self.spawn);
         creep.spawn();
     }
 };

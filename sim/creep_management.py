@@ -11,7 +11,7 @@ class CreepManager:
 
 	def spawnManager(self):
 		if len(self.creeps) < 2:
-			creep = BasicHarvester(self.spawn)
+			creep = new BasicHarvester(self.spawn)
 			creep.spawn()	
 
 		
