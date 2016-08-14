@@ -6,9 +6,5 @@ def main():
 
 	manager = CreepManager("test")
 
-	
-		
-
-	
 
 module.exports.loop = main()
