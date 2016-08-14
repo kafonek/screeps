@@ -234,7 +234,7 @@ BasicHarvesterBehavior.prototype.tick = function tick(){
         resp = creep.harvest(energy);
         if (resp === ERR_NOT_IN_RANGE) {
             creep.say("going out");
-            creep.moveTo(closest);
+            creep.moveTo(energy);
         } else {
             creep.say("harvesting");
         }
