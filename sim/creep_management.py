@@ -11,23 +11,24 @@ class CreepManager:
 
 	def spawnManager(self):
 		if len(self.creeps) < 2:
-			creep = new Creep(self.spawn)
+			creep = new Creep()
+			resp = self.spawn.canCreateCreep(creep.body)
+			print(resp)
+			if resp == OK:
+				self.spawn.createCreep(creep.body, creep.name, creep.memory)
 			
 
 		
 
 class Creep:
-	def __init__(self, spawner):
-		self.spawner = spawner
-		print(self.spawner)
-		self.body = [WORK, MOVE, CARRY]
+	def name(self):
+		return None
 
-		
-	def spawn(self):
-		resp = self.spawner.canCreateCreep(self.body)
-		print(resp)
-		#if resp == OK:
-	#		self.spawner.createCreep(self.body)
+	def body(self):
+		return []
+
+	def memory(self):
+		return {}
 
 class BasicHarvester(Creep):
 	pass

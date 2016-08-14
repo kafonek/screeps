@@ -114,26 +114,30 @@ CreepManager.prototype.__init__ = function __init__(roomname){
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
-    var creep;
+    var creep, resp;
     if (len(self.creeps) < 2) {
-        creep = new Creep(self.spawn);
+        creep = new Creep();
+        resp = self.spawn.canCreateCreep(creep.body);
+        __rapydscript_print(resp);
+        if (resp === OK) {
+            self.spawn.createCreep(creep.body, creep.name, creep.memory);
+        }
     }
 };
 
 function Creep() {
-    Creep.prototype.__init__.apply(this, arguments);
 }
-Creep.prototype.__init__ = function __init__(spawner){
+Creep.prototype.name = function name(){
     var self = this;
-    self.spawner = spawner;
-    __rapydscript_print(self.spawner);
-    self.body = [ WORK, MOVE, CARRY ];
+    return null;
 };
-Creep.prototype.spawn = function spawn(){
+Creep.prototype.body = function body(){
     var self = this;
-    var resp;
-    resp = self.spawner.canCreateCreep(self.body);
-    __rapydscript_print(resp);
+    return [];
+};
+Creep.prototype.memory = function memory(){
+    var self = this;
+    return {};
 };
 
 function BasicHarvester() {
