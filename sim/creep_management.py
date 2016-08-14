@@ -19,6 +19,7 @@ class CreepManager:
 class Creep:
 	def __init__(self, spawner):
 		self.spawner = spawner
+		self.body = [WORK, MOVE, CARRY]
 		
 	def custom_configs(self):
 		"Override this in subclasses"

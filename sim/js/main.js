@@ -128,6 +128,7 @@ function Creep() {
 Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
+    self.body = [ WORK, MOVE, CARRY ];
 };
 Creep.prototype.custom_configs = function custom_configs(){
     var self = this;
