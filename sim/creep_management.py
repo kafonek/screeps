@@ -3,5 +3,4 @@ class CreepManager:
 		self.room = Game.rooms[room]
 		self.creeps = self.room.find(FIND_MY_CREEPS)
 
-	def print_creeps(self):
-		print(self.room)
+	

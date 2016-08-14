@@ -6,7 +6,7 @@ def main():
 
 	for name in Game.rooms:
 		manager = CreepManager(name)
-		manager.print_creeps()
+		
 
 	
 
