@@ -14,7 +14,7 @@ def rapyd():
 			files = glob.glob('%s/*.py' % directory)
 			# Put main.py at the front of the list just for readability in the javascript
 			index = files.index(os.path.join(directory, 'main.py'))
-			files.insert(0, files.pop(index))
+			files.insert(-1, files.pop(index))
 
 			outfile = os.path.join(directory, 'js', 'main.js')
 

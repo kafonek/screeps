@@ -57,9 +57,9 @@ function eq(a, b) {
                 }
             }
         } else {
-            var __rapydscript_Iter4 = __rapydscript_Iterable(a);
-            for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
-                i = __rapydscript_Iter4[__rapydscript_Index4];
+            var __rapydscript_Iter3 = __rapydscript_Iterable(a);
+            for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
+                i = __rapydscript_Iter3[__rapydscript_Index3];
                 if (!eq(a[i], b[i])) {
                     return false;
                 }
@@ -99,19 +99,6 @@ function __rapydscript_print() {
 
 var __name__ = "__main__";
 
-__rapydscript_print = console.log;
-function main() {
-    var manager, name;
-    if (Game.time % 5 === 0) {
-        __rapydscript_print(Game.time);
-    }
-    var __rapydscript_Iter5 = __rapydscript_Iterable(Game.rooms);
-    for (var __rapydscript_Index5 = 0; __rapydscript_Index5 < __rapydscript_Iter5.length; __rapydscript_Index5++) {
-        name = __rapydscript_Iter5[__rapydscript_Index5];
-        manager = CreepManager(name);
-    }
-}
-module.exports.loop = main();
 function CreepManager() {
     CreepManager.prototype.__init__.apply(this, arguments);
 }
@@ -121,6 +108,19 @@ CreepManager.prototype.__init__ = function __init__(room){
     self.creeps = self.room.find(FIND_MY_CREEPS);
 };
 
+__rapydscript_print = console.log;
+function main() {
+    var manager, name;
+    if (Game.time % 5 === 0) {
+        __rapydscript_print(Game.time);
+    }
+    var __rapydscript_Iter4 = __rapydscript_Iterable(Game.rooms);
+    for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
+        name = __rapydscript_Iter4[__rapydscript_Index4];
+        manager = CreepManager(name);
+    }
+}
+module.exports.loop = main();
 function roleHarvester() {
 }
 roleHarvester.prototype.run = function run(creep){
