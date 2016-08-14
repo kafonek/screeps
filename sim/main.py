@@ -1,4 +1,4 @@
-console.log = print
+print = console.log
 
 def main():
 

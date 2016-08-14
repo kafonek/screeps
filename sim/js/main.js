@@ -99,7 +99,7 @@ function __rapydscript_print() {
 
 var __name__ = "__main__";
 
-console.log = print;
+print = console.log;
 function main() {
     var room, creeps, name;
     if (Game.time % 5 === 0) {
