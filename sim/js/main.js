@@ -127,12 +127,19 @@ RoomManager.prototype.spawnManager = function spawnManager(){
 };
 RoomManager.prototype.behaviorManager = function behaviorManager(){
     var self = this;
-    var creep;
+    var roles, role, behavior, creep;
+    roles = {
+        "BasicHarvester": harvest
+    };
     var __rapydscript_Iter3 = __rapydscript_Iterable(self.creeps);
     for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
         creep = __rapydscript_Iter3[__rapydscript_Index3];
         if (Game.time % 5 === 0) {
-            creep.say("hello world");
+            role = creep.memory.role;
+            if (__rapydscript_in(role, roles)) {
+                behavior = roles[role];
+                behavior(creep);
+            }
         }
     }
 };
@@ -163,10 +170,6 @@ _Creep.prototype.spawn = function spawn(){
         __rapydscript_print("Tried to spawn a " + self.type + " but got code " + resp);
     }
 };
-_Creep.prototype.run = function run(creep){
-    var self = this;
-    "Subclasses should specify behavior here.  creep will be the instantiated creep object";
-};
 
 function BasicHarvester() {
     BasicHarvester.prototype.__init__.apply(this, arguments);
@@ -176,30 +179,10 @@ BasicHarvester.prototype.body = [ WORK, MOVE, CARRY ];
 BasicHarvester.prototype.memory = {
     "role": "BasicHarvester"
 };
-BasicHarvester.prototype.run = function run(creep){
-    var self = this;
-    if (Game.time % 5 === 0) {
-        creep.say("Hello World");
-    }
-};
 
-function roleHarvester() {
+function harvest(creep) {
+    creep.say("hello world");
 }
-roleHarvester.prototype.run = function run(creep){
-    var self = this;
-    var energy_source;
-    if (creep.carry.energy > creep.carryCapacity) {
-        energy_source = creep.room.find(FIND_SOURCES)[0];
-        if (creep.harvest(energy_source) === ERR_NOT_IN_RANGE) {
-            creep.moveTo(energy_source);
-        } else {
-            if (creep.transfer(Game.spawns["Spawn1"], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(Game.spawns["Spawn1"]);
-            }
-        }
-    }
-};
-
 __rapydscript_print = console.log;
 function main() {
     var manager, room;

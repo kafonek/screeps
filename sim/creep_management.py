@@ -19,9 +19,14 @@ class RoomManager:
 			creep.spawn()
 
 	def behaviorManager(self):
+		### Can't think of a more elegant way to work this right now
+		roles = {'BasicHarvester' : harvest}
 		for creep in self.creeps:
 			if Game.time % 5 == 0:
-				creep.say("hello world")
+				role = creep.memory.role
+				if role in roles:
+					behavior = roles[role]
+					behavior(creep)
 
 			
 ### Deals with Creep Creation			
@@ -43,29 +48,12 @@ class _Creep:
 		else:
 			print("Tried to spawn a " + self.type + " but got code " + resp)
 
-	def run(self, creep):
-		"Subclasses should specify behavior here.  creep will be the instantiated creep object"
-		pass
-
 
 class BasicHarvester(_Creep):
 	body = [WORK, MOVE, CARRY]
 	memory = {'role': 'BasicHarvester'}
 
-	def run(self, creep):
-		if Game.time % 5 == 0:
-			creep.say("Hello World")
 
-
-
-
-
-class roleHarvester:
-	def run(self, creep):
-		if creep.carry.energy > creep.carryCapacity:
-			energy_source = creep.room.find(FIND_SOURCES)[0]
-			if creep.harvest(energy_source) == ERR_NOT_IN_RANGE:
-				creep.moveTo(energy_source)
-			else:
-				if creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE:
-					creep.moveTo(Game.spawns['Spawn1'])
+### Creep behavior actions
+def harvest(creep):
+	creep.say("hello world")
