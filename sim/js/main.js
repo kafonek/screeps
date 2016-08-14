@@ -127,7 +127,7 @@ RoomManager.prototype.spawnManager = function spawnManager(){
 };
 RoomManager.prototype.behaviorManager = function behaviorManager(){
     var self = this;
-    var classmap, cls, behavior, creep;
+    var classmap, cls, behavior, behaviorClass, creep;
     classmap = {
         "BasicHarvester": BasicHarvesterBehavior
     };
@@ -136,8 +136,9 @@ RoomManager.prototype.behaviorManager = function behaviorManager(){
         creep = __rapydscript_Iter3[__rapydscript_Index3];
         cls = creep.memory.class;
         if (__rapydscript_in(cls, classmap)) {
-            behavior = classmap[cls](self.room, creep);
-            behavior.tick();
+            behavior = classmap[cls];
+            behaviorClass = behavior(self.room, creep);
+            behaviorClass.tick();
         }
     }
 };
@@ -178,10 +179,10 @@ BasicHarvester.prototype.memory = {
     "class": "BasicHarvester"
 };
 
-function CreepBehavior() {
-    CreepBehavior.prototype.__init__.apply(this, arguments);
+function _CreepBehavior() {
+    _CreepBehavior.prototype.__init__.apply(this, arguments);
 }
-CreepBehavior.prototype.__init__ = function __init__(room, creep){
+_CreepBehavior.prototype.__init__ = function __init__(room, creep){
     var self = this;
     self.room = room;
     self.creep = creep;
@@ -191,7 +192,7 @@ CreepBehavior.prototype.__init__ = function __init__(room, creep){
 function BasicHarvesterBehavior() {
     BasicHarvesterBehavior.prototype.__init__.apply(this, arguments);
 }
-__rapydscript_extends(BasicHarvesterBehavior, CreepBehavior);
+__rapydscript_extends(BasicHarvesterBehavior, _CreepBehavior);
 BasicHarvesterBehavior.prototype.tick = function tick(){
     var self = this;
     if (Game.time % 5 === 0) {

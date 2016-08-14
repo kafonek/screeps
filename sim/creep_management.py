@@ -24,8 +24,9 @@ class RoomManager:
 		for creep in self.creeps:
 			cls = creep.memory.class
 			if cls in classmap:
-				behavior = classmap[cls](self.room, creep)
-				behavior.tick()
+				behavior = classmap[cls]
+				behaviorClass = behavior(self.room, creep)
+				behaviorClass.tick()
 
 			
 ### Deals with Creep Creation			
@@ -53,13 +54,13 @@ class BasicHarvester(_Creep):
 	memory = {'class': 'BasicHarvester'}
 
 ### Deals with Creep Behavior
-class CreepBehavior:
+class _CreepBehavior:
 	def __init__(self, room, creep):
 		self.room = room
 		self.creep = creep
 		self.memory = creep.memory
 
-class BasicHarvesterBehavior(CreepBehavior):
+class BasicHarvesterBehavior(_CreepBehavior):
 	def tick(self):
 		if Game.time % 5 == 0:
 			self.creep.say(Game.time)
