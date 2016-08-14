@@ -120,6 +120,7 @@ CreepManager.prototype.spawnManager = function spawnManager(){
     var creep;
     if (len(self.creeps) < 1) {
         creep = new BasicHarvester(self.spawn);
+        creep.spawn();
     }
 };
 
@@ -128,10 +129,19 @@ function Unit() {
 }
 "I'd call this a Creep but it breaks the game?";
 Unit.prototype.body = [];
+Unit.prototype.memory = {};
+Unit.prototype.name = null;
 Unit.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
-    __rapydscript_print(self.spawner._name);
+};
+Unit.prototype.spawn = function spawn(){
+    var self = this;
+    var resp;
+    resp = self.spawner.canCreateCreep(self.body, self.name);
+    if (resp === OK) {
+        self.spawner.createCreep(self.body, self.name, self.memory);
+    }
 };
 
 function BasicHarvester() {
