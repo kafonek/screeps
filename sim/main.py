@@ -1,9 +1,13 @@
+console.log = print
+
 def main():
+
 	if Game.time % 5 == 0:
-		console.log(Game.time)
+		print(Game.time)
 	for name in Game.rooms:
-		console.log(name)
-		console.log(Game.rooms[name].energyAvailable)
+		room = Game.rooms[name]
+		creeps = room.find(FIND_MY_CREEPS)
+		#console.log
 
 	
 

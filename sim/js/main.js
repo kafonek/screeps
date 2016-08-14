@@ -91,19 +91,25 @@ function __rapydscript_extends(child, parent) {
     child.prototype = Object.create(parent.prototype);
     child.prototype.constructor = child;
 }
+function __rapydscript_print() {
+    if (typeof console === "object") {
+        console.log.apply(console, arguments);
+    }
+}
 
 var __name__ = "__main__";
 
+console.log = print;
 function main() {
-    var name;
+    var room, creeps, name;
     if (Game.time % 5 === 0) {
-        console.log(Game.time);
+        __rapydscript_print(Game.time);
     }
     var __rapydscript_Iter5 = __rapydscript_Iterable(Game.rooms);
     for (var __rapydscript_Index5 = 0; __rapydscript_Index5 < __rapydscript_Iter5.length; __rapydscript_Index5++) {
         name = __rapydscript_Iter5[__rapydscript_Index5];
-        console.log(name);
-        console.log(Game.rooms[name].energyAvailable);
+        room = Game.rooms[name];
+        creeps = room.find(FIND_MY_CREEPS);
     }
 }
 module.exports.loop = main();
