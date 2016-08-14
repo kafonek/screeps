@@ -4,4 +4,4 @@ class CreepManager:
 		self.creeps = self.room.find(FIND_MY_CREEPS)
 
 	def print_creeps(self):
-		print("%s Creeps spawned in %s" % (len(self.creeps), self.room))
+		print(self.room)

@@ -123,7 +123,7 @@ CreepManager.prototype.__init__ = function __init__(room){
 };
 CreepManager.prototype.print_creeps = function print_creeps(){
     var self = this;
-    __rapydscript_print("%s Creeps spawned in %s" % [len(self.creeps), self.room]);
+    __rapydscript_print(self.room);
 };
 
 function roleHarvester() {
