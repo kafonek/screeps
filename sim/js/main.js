@@ -57,9 +57,9 @@ function eq(a, b) {
                 }
             }
         } else {
-            var __rapydscript_Iter3 = __rapydscript_Iterable(a);
-            for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
-                i = __rapydscript_Iter3[__rapydscript_Index3];
+            var __rapydscript_Iter2 = __rapydscript_Iterable(a);
+            for (var __rapydscript_Index2 = 0; __rapydscript_Index2 < __rapydscript_Iter2.length; __rapydscript_Index2++) {
+                i = __rapydscript_Iter2[__rapydscript_Index2];
                 if (!eq(a[i], b[i])) {
                     return false;
                 }
@@ -114,14 +114,8 @@ CreepManager.prototype.print_creeps = function print_creeps(){
 
 __rapydscript_print = console.log;
 function main() {
-    var manager, name;
     if (Game.time % 5 === 0) {
         __rapydscript_print(Game.time);
-    }
-    var __rapydscript_Iter4 = __rapydscript_Iterable(Game.rooms);
-    for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
-        name = __rapydscript_Iter4[__rapydscript_Index4];
-        manager = CreepManager(Game.rooms[name]);
     }
 }
 module.exports.loop = main();

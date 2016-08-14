@@ -4,8 +4,7 @@ def main():
 	if Game.time % 5 == 0:
 		print(Game.time)
 
-	for name in Game.rooms:
-		manager = CreepManager(Game.rooms[name])
+	
 		
 
 	
