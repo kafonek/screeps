@@ -110,7 +110,9 @@ function main() {
         name = __rapydscript_Iter5[__rapydscript_Index5];
         room = Game.rooms[name];
         creeps = room.find(FIND_MY_CREEPS);
-        __rapydscript_print(creeps);
+        if (!creeps) {
+            __rapydscript_print("No Creeps spawned");
+        }
     }
 }
 module.exports.loop = main();
