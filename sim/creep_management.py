@@ -73,7 +73,7 @@ class BasicHarvesterBehavior(_CreepBehavior):
 	def find_closest_spawn(self):
 		spawn = self._get('closest_spawn')
 		if not spawn:
-			spawn = self.room.findClosestByPath(FIND_SPAWNS)
+			spawn = self.room.findClosestByPath(FIND_MY_SPAWNS)
 			self._set('closest_spawn', spawn)
 		return spawn
 
