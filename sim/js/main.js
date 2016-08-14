@@ -228,7 +228,7 @@ BasicHarvesterBehavior.prototype.find_closest_energy = function find_closest_ene
 BasicHarvesterBehavior.prototype.tick = function tick(){
     var self = this;
     var energy, spawn, resp;
-    if (self.creep.carry < creep.energyCapacity) {
+    if (self.creep.carry < self.creep.energyCapacity) {
         energy = self.find_closest_energy();
         resp = self.creep.harvest(energy);
         if (resp === -9) {

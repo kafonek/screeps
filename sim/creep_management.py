@@ -85,7 +85,7 @@ class BasicHarvesterBehavior(_CreepBehavior):
 		return energy
 		
 	def tick(self):
-		if self.creep.carry < creep.energyCapacity:
+		if self.creep.carry < self.creep.energyCapacity:
 			energy = self.find_closest_energy()
 			resp = self.creep.harvest(energy)
 			if resp == -9:
