@@ -111,6 +111,7 @@ CreepManager.prototype.__init__ = function __init__(roomname){
         __rapydscript_print(dir(self.spawn));
         __rapydscript_print(self.spawn.energy);
     }
+    self.spawnManager();
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;

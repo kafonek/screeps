@@ -6,7 +6,7 @@ class CreepManager:
 		if Game.time % 10 == 0:
 			print(dir(self.spawn))
 			print(self.spawn.energy)
-		#self.spawnManager()
+		self.spawnManager()
 
 
 	def spawnManager(self):
