@@ -34,6 +34,7 @@ class Unit:
 
 
 class BasicHarvester(Unit):
+	body = [WORK, MOVE, CARRY]
 	pass
 
 

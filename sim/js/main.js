@@ -149,6 +149,7 @@ function BasicHarvester() {
     BasicHarvester.prototype.__init__.apply(this, arguments);
 }
 __rapydscript_extends(BasicHarvester, Unit);
+BasicHarvester.prototype.body = [ WORK, MOVE, CARRY ];
 
 
 function roleHarvester() {
