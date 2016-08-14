@@ -7,7 +7,7 @@ def main():
 	for name in Game.rooms:
 		room = Game.rooms[name]
 		creeps = room.find(FIND_MY_CREEPS)
-		if not creeps:
+		if len(creeps) == 0:
 			print("No Creeps spawned")
 
 	
