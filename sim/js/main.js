@@ -115,10 +115,10 @@ CreepManager.prototype.__init__ = function __init__(roomname){
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
-    var creep;
+    var resp;
     if (len(self.creeps) < 2) {
-        creep = new Creep(self.spawn);
-        creep.spawn();
+        resp = self.spawn.canCreateCreep([ WORK, MOVE, CARRY ]);
+        __rapydscript_print(resp);
     }
 };
 
@@ -129,10 +129,6 @@ Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
     self.body = [ WORK, MOVE, CARRY ];
-};
-Creep.prototype.custom_configs = function custom_configs(){
-    var self = this;
-    "Override this in subclasses";
 };
 Creep.prototype.spawn = function spawn(){
     var self = this;

@@ -11,8 +11,8 @@ class CreepManager:
 
 	def spawnManager(self):
 		if len(self.creeps) < 2:
-			creep = new Creep(self.spawn)
-			creep.spawn()	
+			resp = self.spawn.canCreateCreep([WORK, MOVE, CARRY])
+			print(resp)	
 
 		
 
@@ -20,10 +20,6 @@ class Creep:
 	def __init__(self, spawner):
 		self.spawner = spawner
 		self.body = [WORK, MOVE, CARRY]
-		
-	def custom_configs(self):
-		"Override this in subclasses"
-		pass
 		
 	def spawn(self):
 		resp = self.spawner.canCreateCreep(self.body)
