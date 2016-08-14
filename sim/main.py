@@ -7,7 +7,7 @@ def main():
 	for name in Game.rooms:
 		room = Game.rooms[name]
 		creeps = room.find(FIND_MY_CREEPS)
-		#console.log
+		print(creeps)
 
 	
 
