@@ -85,17 +85,24 @@ class BasicHarvesterBehavior(_CreepBehavior):
 		return energy
 		
 	def tick(self):
-		if self.creep.carry < self.creep.energyCapacity:
+		creep = self.creep
+
+		if creep.carry < creep.energyCapacity:
 			energy = self.find_closest_energy()
-			resp = self.creep.harvest(energy)
-			if resp == -9:
-				self.creep.moveTo(closest)
+			resp = creep.harvest(energy)
+			if resp == ERR_NOT_IN_RANGE:
+				creep.say("going out")
+				creep.moveTo(closest)
+			else:
+				creep.say("harvesting")
 		else:
 			spawn = self.find_closest_spawn()
-			resp = self.creep.transfer(spawn, RESOURCE_ENERGY)
-			if resp == -9:
-				self.creep.moveTo(spawn)
-
+			resp = creep.transfer(spawn, RESOURCE_ENERGY)
+			if resp == ERR_NOT_IN_RANGE:
+				creep.say("returning")
+				creep.moveTo(spawn)
+			else:
+				creep.say("transferring")
 
 
 
