@@ -25,7 +25,7 @@ class RoomManager:
 			cls = creep.memory.class
 			if cls in classmap:
 				behavior = classmap[cls]
-				behaviorClass = behavior(self.room, creep)
+				behaviorClass = new behavior(self.room, creep)
 				behaviorClass.tick()
 
 			

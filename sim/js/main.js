@@ -137,7 +137,7 @@ RoomManager.prototype.behaviorManager = function behaviorManager(){
         cls = creep.memory.class;
         if (__rapydscript_in(cls, classmap)) {
             behavior = classmap[cls];
-            behaviorClass = behavior(self.room, creep);
+            behaviorClass = new behavior(self.room, creep);
             behaviorClass.tick();
         }
     }
