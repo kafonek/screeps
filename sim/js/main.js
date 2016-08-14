@@ -118,7 +118,6 @@ CreepManager.prototype.spawnManager = function spawnManager(){
     var creep;
     if (len(self.creeps) < 2) {
         creep = new Creep(self.spawn);
-        creep.spawn();
     }
 };
 
@@ -127,7 +126,8 @@ function Creep() {
 }
 Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
-    self.spawner = Game.spawns[spawner];
+    self.spawner = spawner;
+    __rapydscript_print(self.spawner);
     self.body = [ WORK, MOVE, CARRY ];
 };
 Creep.prototype.spawn = function spawn(){

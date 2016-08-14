@@ -12,13 +12,14 @@ class CreepManager:
 	def spawnManager(self):
 		if len(self.creeps) < 2:
 			creep = new Creep(self.spawn)
-			creep.spawn()
+			
 
 		
 
 class Creep:
 	def __init__(self, spawner):
-		self.spawner = Game.spawns[spawner]
+		self.spawner = spawner
+		print(self.spawner)
 		self.body = [WORK, MOVE, CARRY]
 
 		
