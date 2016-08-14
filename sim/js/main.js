@@ -152,14 +152,20 @@ _Creep.prototype.name = null;
 _Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
-    self.memory["type"] = self.__class__;
+    self.type = self.__class__;
+    self.memory["type"] = self.type;
 };
 _Creep.prototype.spawn = function spawn(){
     var self = this;
     var resp;
     resp = self.spawner.canCreateCreep(self.body, self.name);
     if (resp === OK) {
+        __rapydscript_print("Spawning new " + self.type);
+        __rapydscript_print("Body: " + self.body);
+        __rapydscript_print("Memory: " + self.memory);
         self.spawner.createCreep(self.body, self.name, self.memory);
+    } else {
+        __rapydscript_print("Tried to spawn a " + self.type + " but got code " + resp);
     }
 };
 
@@ -168,7 +174,9 @@ function BasicHarvester() {
 }
 __rapydscript_extends(BasicHarvester, _Creep);
 BasicHarvester.prototype.body = [ WORK, MOVE, CARRY ];
-
+BasicHarvester.prototype.memory = {
+    "role": "Harvester"
+};
 
 __rapydscript_print = console.log;
 function main() {

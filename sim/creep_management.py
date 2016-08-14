@@ -26,16 +26,23 @@ class _Creep:
 	name = None
 	def __init__(self, spawner):
 		self.spawner = spawner
-		self.memory['type'] = self.__class__
+		self.type = self.__class__
+		self.memory['type'] = self.type
 		
 	def spawn(self):
 		resp = self.spawner.canCreateCreep(self.body, self.name)
 		if resp == OK:
+			print("Spawning new " + self.type)
+			print("Body: " + self.body)
+			print("Memory: " + self.memory)
 			self.spawner.createCreep(self.body, self.name, self.memory)
+		else:
+			print("Tried to spawn a " + self.type + " but got code " + resp)
 
 
 class BasicHarvester(_Creep):
 	body = [WORK, MOVE, CARRY]
-	pass
+	memory = {'role': 'Harvester'}
+	
 
 
