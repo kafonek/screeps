@@ -99,6 +99,90 @@ function __rapydscript_print() {
 
 var __name__ = "__main__";
 
+function RoomManager() {
+    RoomManager.prototype.__init__.apply(this, arguments);
+}
+RoomManager.prototype.__init__ = function __init__(roomname){
+    var self = this;
+    self.room = Game.rooms[roomname];
+    self.room.memory.manager = self;
+    self.creeps = self.room.find(FIND_MY_CREEPS);
+    self.spawn = self.room.find(FIND_MY_SPAWNS)[0];
+    self.test = [];
+    if (Game.time % 10 === 0) {
+        __rapydscript_print(self.spawn._name);
+        __rapydscript_print(dir(self.spawn));
+        __rapydscript_print(self.spawn.energy);
+    }
+    self.spawnManager();
+    self.behaviorManager();
+};
+RoomManager.prototype.spawnManager = function spawnManager(){
+    var self = this;
+    var creep;
+    if (len(self.creeps) < 1) {
+        creep = new BasicHarvester(self.spawn);
+        creep.spawn();
+    }
+};
+RoomManager.prototype.behaviorManager = function behaviorManager(){
+    var self = this;
+    var creep;
+    var __rapydscript_Iter3 = __rapydscript_Iterable(self.creeps);
+    for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
+        creep = __rapydscript_Iter3[__rapydscript_Index3];
+        if (Game.time % 5 === 0) {
+            creep.say("hello world");
+        }
+    }
+};
+
+function _Creep() {
+    _Creep.prototype.__init__.apply(this, arguments);
+}
+"I'd call this a Creep but it breaks the game?";
+_Creep.prototype.body = [];
+_Creep.prototype.memory = {
+    "role": "AbstractBaseCreep"
+};
+_Creep.prototype.name = null;
+_Creep.prototype.__init__ = function __init__(spawner){
+    var self = this;
+    self.spawner = spawner;
+};
+_Creep.prototype.spawn = function spawn(){
+    var self = this;
+    var resp;
+    resp = self.spawner.canCreateCreep(self.body, self.name);
+    if (resp === OK) {
+        __rapydscript_print("Spawning new " + self.type);
+        __rapydscript_print("Body: " + self.body);
+        __rapydscript_print("Memory: " + self.memory);
+        self.spawner.createCreep(self.body, self.name, self.memory);
+    } else {
+        __rapydscript_print("Tried to spawn a " + self.type + " but got code " + resp);
+    }
+};
+_Creep.prototype.run = function run(creep){
+    var self = this;
+    "Subclasses should specify behavior here.  creep will be the instantiated creep object";
+};
+
+function BasicHarvester() {
+    BasicHarvester.prototype.__init__.apply(this, arguments);
+}
+__rapydscript_extends(BasicHarvester, _Creep);
+BasicHarvester.prototype.body = [ WORK, MOVE, CARRY ];
+BasicHarvester.prototype.memory = {
+    "role": "BasicHarvester"
+};
+BasicHarvester.prototype.run = function run(creep){
+    var self = this;
+    if (Game.time % 5 === 0) {
+        creep.say("Hello World");
+    }
+};
+
 function roleHarvester() {
 }
 roleHarvester.prototype.run = function run(creep){
@@ -116,79 +200,13 @@ roleHarvester.prototype.run = function run(creep){
     }
 };
 
-function CreepManager() {
-    CreepManager.prototype.__init__.apply(this, arguments);
-}
-CreepManager.prototype.__init__ = function __init__(roomname){
-    var self = this;
-    self.room = Game.rooms[roomname];
-    self.room.memory.manager = self;
-    self.creeps = self.room.find(FIND_MY_CREEPS);
-    self.spawn = self.room.find(FIND_MY_SPAWNS)[0];
-    self.test = [];
-    if (Game.time % 10 === 0) {
-        __rapydscript_print(self.spawn._name);
-        __rapydscript_print(dir(self.spawn));
-        __rapydscript_print(self.spawn.energy);
-    }
-    self.spawnManager();
-};
-CreepManager.prototype.spawnManager = function spawnManager(){
-    var self = this;
-    var creep;
-    if (len(self.creeps) < 1) {
-        creep = new BasicHarvester(self.spawn);
-        creep.spawn();
-    }
-};
-
-function _Creep() {
-    _Creep.prototype.__init__.apply(this, arguments);
-}
-"I'd call this a Creep but it breaks the game?";
-_Creep.prototype.body = [];
-_Creep.prototype.memory = {};
-_Creep.prototype.name = null;
-_Creep.prototype.__init__ = function __init__(spawner){
-    var self = this;
-    self.spawner = spawner;
-    self.type = self.__class__;
-    self.memory = self.memory;
-    self.memory["type"] = self.type;
-};
-_Creep.prototype.spawn = function spawn(){
-    var self = this;
-    var resp;
-    resp = self.spawner.canCreateCreep(self.body, self.name);
-    if (resp === OK) {
-        __rapydscript_print("Spawning new " + self.type);
-        __rapydscript_print("Body: " + self.body);
-        __rapydscript_print("Memory: " + self.memory);
-        self.spawner.createCreep(self.body, self.name, self.memory);
-    } else {
-        __rapydscript_print("Tried to spawn a " + self.type + " but got code " + resp);
-    }
-};
-
-function BasicHarvester() {
-    BasicHarvester.prototype.__init__.apply(this, arguments);
-}
-__rapydscript_extends(BasicHarvester, _Creep);
-BasicHarvester.prototype.body = [ WORK, MOVE, CARRY ];
-BasicHarvester.prototype.memory = {
-    "role": "Harvester"
-};
-
 __rapydscript_print = console.log;
 function main() {
     var manager, room;
-    if (Game.time % 5 === 0) {
-        __rapydscript_print(Game.time);
-    }
-    var __rapydscript_Iter3 = __rapydscript_Iterable(Game.rooms);
-    for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
-        room = __rapydscript_Iter3[__rapydscript_Index3];
-        manager = new CreepManager(room);
+    var __rapydscript_Iter4 = __rapydscript_Iterable(Game.rooms);
+    for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
+        room = __rapydscript_Iter4[__rapydscript_Index4];
+        manager = new RoomManager(room);
     }
 }
 module.exports.loop = main();
