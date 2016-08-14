@@ -105,6 +105,7 @@ function CreepManager() {
 CreepManager.prototype.__init__ = function __init__(room){
     var self = this;
     self.room = room;
+    __rapydscript_print("CreepManager init for %s" % self.room);
 };
 CreepManager.prototype.print_creeps = function print_creeps(){
     var self = this;
@@ -130,10 +131,14 @@ roleHarvester.prototype.run = function run(creep){
 
 __rapydscript_print = console.log;
 function main() {
-    var manager;
+    var manager, room;
     if (Game.time % 5 === 0) {
         __rapydscript_print(Game.time);
     }
-    manager = new CreepManager("test");
+    var __rapydscript_Iter3 = __rapydscript_Iterable(Game.rooms);
+    for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
+        room = __rapydscript_Iter3[__rapydscript_Index3];
+        manager = new CreepManager(room);
+    }
 }
 module.exports.loop = main();
