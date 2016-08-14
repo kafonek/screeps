@@ -95,8 +95,11 @@ function __rapydscript_extends(child, parent) {
 var __name__ = "__main__";
 
 function main() {
-    module.exports.loop = main();
+    if (Game.time % 5 === 0) {
+        console.log("Game tick: %s" % Game.time);
+    }
 }
+module.exports.loop = main();
 function roleHarvester() {
 }
 roleHarvester.prototype.run = function run(creep){
