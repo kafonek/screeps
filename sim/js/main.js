@@ -125,12 +125,10 @@ CreepManager.prototype.spawnManager = function spawnManager(){
 function Creep() {
     Creep.prototype.__init__.apply(this, arguments);
 }
+Creep.prototype.body = [];
 Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
-    self.body = new []();
-    self.memory = new {}();
-    self.name = null;
 };
 Creep.prototype.custom_configs = function custom_configs(){
     var self = this;
@@ -139,9 +137,9 @@ Creep.prototype.custom_configs = function custom_configs(){
 Creep.prototype.spawn = function spawn(){
     var self = this;
     var resp;
-    resp = self.spawner.canCreateCreep(self.body, self.name);
+    resp = self.spawner.canCreateCreep(self.body);
     if (resp === OK) {
-        self.spawner.createCreep(self.body, self.name, self.memory);
+        self.spawner.createCreep(self.body);
     }
 };
 
@@ -149,13 +147,7 @@ function BasicHarvester() {
     BasicHarvester.prototype.__init__.apply(this, arguments);
 }
 __rapydscript_extends(BasicHarvester, Creep);
-BasicHarvester.prototype.custom_configs = function custom_configs(){
-    var self = this;
-    self.body = [ WORK, CARRY, MOVE ];
-    self.memory = {
-        "role": "harvester"
-    };
-};
+BasicHarvester.prototype.body = [ WORK, CARRY, MOVE ];
 
 function roleHarvester() {
 }

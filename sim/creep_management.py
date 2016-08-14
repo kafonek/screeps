@@ -17,23 +17,20 @@ class CreepManager:
 		
 
 class Creep:
+	body = []
 	def __init__(self, spawner):
 		self.spawner = spawner
-		self.body = new []
-		self.memory = new {}
-		self.name = None
-
+		
 	def custom_configs(self):
 		"Override this in subclasses"
 		pass
 		
 	def spawn(self):
-		resp = self.spawner.canCreateCreep(self.body, self.name)
+		resp = self.spawner.canCreateCreep(self.body)
 		if resp == OK:
-			self.spawner.createCreep(self.body, self.name, self.memory)
+			self.spawner.createCreep(self.body)
 
 class BasicHarvester(Creep):
-	def custom_configs(self):
-		self.body = [WORK, CARRY, MOVE]
-		self.memory = {'role' : 'harvester'}
+	body = [WORK, CARRY, MOVE]
+
 
