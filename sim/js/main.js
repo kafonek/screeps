@@ -188,15 +188,58 @@ _CreepBehavior.prototype.__init__ = function __init__(room, creep){
     self.creep = creep;
     self.memory = creep.memory;
 };
+_CreepBehavior.prototype._get = function _get(key){
+    var self = this;
+    "Retrieve an object from persistent memory";
+    if (__rapydscript_in(key, self.memory)) {
+        return Game.getObjectById(self.memory[key]);
+    }
+};
+_CreepBehavior.prototype._set = function _set(key, object){
+    var self = this;
+    "Set an object in persistent memory";
+    slef.memory[key] = object.id;
+};
 
 function BasicHarvesterBehavior() {
     BasicHarvesterBehavior.prototype.__init__.apply(this, arguments);
 }
 __rapydscript_extends(BasicHarvesterBehavior, _CreepBehavior);
+BasicHarvesterBehavior.prototype.find_closest_spawn = function find_closest_spawn(){
+    var self = this;
+    var spawn;
+    spawn = self._get("closest_spawn");
+    if (!spawn) {
+        spawn = self.room.findClosestByPath(FIND_SPAWNS);
+        self._set("closest_spawn", spawn);
+    }
+    return spawn;
+};
+BasicHarvesterBehavior.prototype.find_closest_energy = function find_closest_energy(){
+    var self = this;
+    var energy;
+    energy = self._get("closest_energy");
+    if (!energy) {
+        energy = self.creep.pos.findClosestByPath(FIND_SOURCES);
+        self._set("closest_energy", energy);
+    }
+    return energy;
+};
 BasicHarvesterBehavior.prototype.tick = function tick(){
     var self = this;
-    if (Game.time % 5 === 0) {
-        self.creep.say(Game.time);
+    var energy, spawn, resp;
+    if (self.creep.carry < creep.energyCapacity) {
+        energy = self.find_closest_energy();
+        resp = self.creep.harvest(energy);
+        if (resp === -9) {
+            self.creep.moveTo(closest);
+        }
+    } else {
+        spawn = self.find_closest_spawn();
+        resp = self.creep.transfer(spawn, RESOURCE_ENERGY);
+        if (resp === -9) {
+            self.creep.moveTo(spawn);
+        }
     }
 };
 

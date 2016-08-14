@@ -60,10 +60,43 @@ class _CreepBehavior:
 		self.creep = creep
 		self.memory = creep.memory
 
+	def _get(self, key):
+		"Retrieve an object from persistent memory"
+		if key in self.memory:
+			return Game.getObjectById(self.memory[key])
+
+	def _set(self, key, object):
+		"Set an object in persistent memory"
+		slef.memory[key] = object.id
+
 class BasicHarvesterBehavior(_CreepBehavior):
+	def find_closest_spawn(self):
+		spawn = self._get('closest_spawn')
+		if not spawn:
+			spawn = self.room.findClosestByPath(FIND_SPAWNS)
+			self._set('closest_spawn', spawn)
+		return spawn
+
+	def find_closest_energy(self):
+		energy = self._get('closest_energy')
+		if not energy:
+			energy = self.creep.pos.findClosestByPath(FIND_SOURCES)
+			self._set('closest_energy', energy)
+		return energy
+		
 	def tick(self):
-		if Game.time % 5 == 0:
-			self.creep.say(Game.time)
+		if self.creep.carry < creep.energyCapacity:
+			energy = self.find_closest_energy()
+			resp = self.creep.harvest(energy)
+			if resp == -9:
+				self.creep.moveTo(closest)
+		else:
+			spawn = self.find_closest_spawn()
+			resp = self.creep.transfer(spawn, RESOURCE_ENERGY)
+			if resp == -9:
+				self.creep.moveTo(spawn)
+
+
 
 
 
