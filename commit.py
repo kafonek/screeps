@@ -16,7 +16,7 @@ def rapyd():
 			index = files.index(os.path.join(directory, 'main.py'))
 			mainpy = files.pop(index)
 			print(mainpy)
-			files.insert(-1, mainpy)
+			files.append(mainpy)
 			print(files)
 
 			outfile = os.path.join(directory, 'js', 'main.js')

@@ -112,15 +112,6 @@ CreepManager.prototype.print_creeps = function print_creeps(){
     __rapydscript_print("There are");
 };
 
-__rapydscript_print = console.log;
-function main() {
-    var manager;
-    if (Game.time % 5 === 0) {
-        __rapydscript_print(Game.time);
-    }
-    manager = CreepManager("test");
-}
-module.exports.loop = main();
 function roleHarvester() {
 }
 roleHarvester.prototype.run = function run(creep){
@@ -137,3 +128,13 @@ roleHarvester.prototype.run = function run(creep){
         }
     }
 };
+
+__rapydscript_print = console.log;
+function main() {
+    var manager;
+    if (Game.time % 5 === 0) {
+        __rapydscript_print(Game.time);
+    }
+    manager = CreepManager("test");
+}
+module.exports.loop = main();
