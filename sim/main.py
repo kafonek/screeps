@@ -4,6 +4,8 @@ def main():
 	if Game.time % 5 == 0:
 		print(Game.time)
 
+	manager = CreepManager("test")
+
 	
 		
 
