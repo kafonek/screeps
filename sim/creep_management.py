@@ -1,4 +1,3 @@
-@external
 class CreepManager:
 	def __init__(self, room):
 		self.room = None

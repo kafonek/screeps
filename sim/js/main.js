@@ -99,7 +99,19 @@ function __rapydscript_print() {
 
 var __name__ = "__main__";
 
-
+function CreepManager() {
+    CreepManager.prototype.__init__.apply(this, arguments);
+}
+CreepManager.prototype.__init__ = function __init__(room){
+    var self = this;
+    self.room = null;
+    self.room = room;
+    __rapydscript_print("CreepManager spawned");
+};
+CreepManager.prototype.print_creeps = function print_creeps(){
+    var self = this;
+    __rapydscript_print("There are");
+};
 
 __rapydscript_print = console.log;
 function main() {
