@@ -111,9 +111,15 @@ CreepManager.prototype.__init__ = function __init__(roomname){
         __rapydscript_print(dir(self.spawn));
         __rapydscript_print(self.spawn.energy);
     }
+    self.spawnManager();
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
+    if (len(self.creeps) < 2) {
+        if (self.spawn.energy > 100) {
+            self.spawn.createCreep([ MOVE, MOVE, WORK, CARRY, CARRY ]);
+        }
+    }
 };
 
 function roleHarvester() {

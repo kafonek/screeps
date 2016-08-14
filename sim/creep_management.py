@@ -6,10 +6,13 @@ class CreepManager:
 		if Game.time % 10 == 0:
 			print(dir(self.spawn))
 			print(self.spawn.energy)
-			
+		self.spawnManager()
+
 
 	def spawnManager(self):
-		pass	
+		if len(self.creeps) < 2:
+			if self.spawn.energy > 100:
+				self.spawn.createCreep([MOVE, MOVE, WORK, CARRY, CARRY])	
 
 		
 
