@@ -21,7 +21,7 @@ class CreepManager:
 
 class Creep:
 	def __init__(self, spawn_name):
-		self.spawner = Game.spawns.spawn_name
+		self.spawner = Game.spawns[spawn_name]
 		print(spawner)
 		print(dir(spawner))
 

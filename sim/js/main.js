@@ -127,7 +127,7 @@ function Creep() {
 }
 Creep.prototype.__init__ = function __init__(spawn_name){
     var self = this;
-    self.spawner = Game.spawns.spawn_name;
+    self.spawner = Game.spawns[spawn_name];
     __rapydscript_print(spawner);
     __rapydscript_print(dir(spawner));
 };
