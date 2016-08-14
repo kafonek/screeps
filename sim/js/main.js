@@ -115,10 +115,10 @@ CreepManager.prototype.__init__ = function __init__(roomname){
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
-    var resp;
+    var creep;
     if (len(self.creeps) < 2) {
-        resp = self.spawn.canCreateCreep([ WORK, MOVE, CARRY ]);
-        __rapydscript_print(resp);
+        creep = new Creep(self.spawn);
+        creep.spawn();
     }
 };
 
@@ -134,9 +134,7 @@ Creep.prototype.spawn = function spawn(){
     var self = this;
     var resp;
     resp = self.spawner.canCreateCreep(self.body);
-    if (resp === OK) {
-        self.spawner.createCreep(self.body);
-    }
+    __rapydscript_print(resp);
 };
 
 function BasicHarvester() {
