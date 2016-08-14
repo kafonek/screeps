@@ -106,11 +106,11 @@ CreepManager.prototype.__init__ = function __init__(roomname){
     var self = this;
     self.room = Game.rooms[roomname];
     self.creeps = self.room.find(FIND_MY_CREEPS);
-    __rapydscript_print("CreepManager for " + self.room.name + " inited.  Creepcount: " + len(self.creeps));
+    self.spawn = self.room.find(FIND_MY_SPAWNS);
+    __rapydscript_print(self.spawn);
 };
-CreepManager.prototype.print_creeps = function print_creeps(){
+CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
-    __rapydscript_print("There are");
 };
 
 function roleHarvester() {
