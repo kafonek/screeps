@@ -19,7 +19,7 @@ class CreepManager:
 			creep.spawn()
 			
 
-class Creep:
+class _Creep:
 	"I'd call this a Creep but it breaks the game?"
 	body = []
 	memory = {}
@@ -33,7 +33,7 @@ class Creep:
 			self.spawner.createCreep(self.body, self.name, self.memory)
 
 
-class BasicHarvester(Creep):
+class BasicHarvester(_Creep):
 	body = [WORK, MOVE, CARRY]
 	pass
 
