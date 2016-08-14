@@ -96,7 +96,7 @@ var __name__ = "__main__";
 
 function main() {
     if (Game.time % 5 === 0) {
-        console.log("Game tick: " + str(Game.time));
+        console.log(Game.time);
     }
 }
 module.exports.loop = main();
