@@ -12,7 +12,7 @@ class CreepManager:
 
 	def spawnManager(self):
 		if len(self.creeps) < 2:
-			creep = new Creep(self.spawn)
+			creep = new Creep(self.spawn._name)
 
 			
 			
@@ -20,8 +20,8 @@ class CreepManager:
 		
 
 class Creep:
-	def __init__(self, spawner):
-		self.spawner = spawner
+	def __init__(self, spawn_name):
+		self.spawner = Game.spawns.spawn_name
 		print(spawner)
 		print(dir(spawner))
 
