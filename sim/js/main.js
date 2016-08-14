@@ -113,23 +113,20 @@ CreepManager.prototype.__init__ = function __init__(roomname){
         __rapydscript_print(dir(self.spawn));
         __rapydscript_print(self.spawn.energy);
     }
+    self.spawnManager();
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
     var creep;
-    if (len(self.creeps) < 2) {
-        creep = new Creep(self.spawn._name);
-    }
+    creep = new Creep();
 };
 
 function Creep() {
     Creep.prototype.__init__.apply(this, arguments);
 }
-Creep.prototype.__init__ = function __init__(spawn_name){
+Creep.prototype.__init__ = function __init__(){
     var self = this;
-    self.spawner = Game.spawns[spawn_name];
-    __rapydscript_print(spawner);
-    __rapydscript_print(dir(spawner));
+    self.body = [];
 };
 
 function BasicHarvester() {
