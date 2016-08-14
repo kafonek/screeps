@@ -13,6 +13,7 @@ class CreepManager:
 
 	def spawnManager(self):
 		creep = new Creep()
+		print(creep)
 
 class Creep:
 	def __init__(self):

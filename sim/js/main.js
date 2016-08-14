@@ -119,6 +119,7 @@ CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
     var creep;
     creep = new Creep();
+    __rapydscript_print(creep);
 };
 
 function Creep() {
