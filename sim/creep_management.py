@@ -21,12 +21,22 @@ class CreepManager:
 		
 
 class Creep:
-	body = []
-	memory = {}
-	name = None
+	@property
+	def body(self):
+		return []
+
+	@property
+	def memory(self):
+		return {}
+
+	@property
+	def name(self):
+		return None
 
 
 class BasicHarvester(Creep):
-	body = [WORK, CARRY, MOVE]
+	@property
+	def body(self):
+		return [WORK, CARRY, MOVE]
 
 
