@@ -67,7 +67,7 @@ class _CreepBehavior:
 
 	def _set(self, key, object):
 		"Set an object in persistent memory"
-		slef.memory[key] = object.id
+		self.memory[key] = object.id
 
 class BasicHarvesterBehavior(_CreepBehavior):
 	def find_closest_spawn(self):

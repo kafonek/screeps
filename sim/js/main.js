@@ -198,7 +198,7 @@ _CreepBehavior.prototype._get = function _get(key){
 _CreepBehavior.prototype._set = function _set(key, object){
     var self = this;
     "Set an object in persistent memory";
-    slef.memory[key] = object.id;
+    self.memory[key] = object.id;
 };
 
 function BasicHarvesterBehavior() {
