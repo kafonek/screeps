@@ -102,10 +102,13 @@ var __name__ = "__main__";
 function CreepManager() {
     CreepManager.prototype.__init__.apply(this, arguments);
 }
-CreepManager.prototype.__init__ = function __init__(room){
+CreepManager.prototype.__init__ = function __init__(){
+    var self = this;
+};
+CreepManager.prototype.run = function run(room){
     var self = this;
     self.room = room;
-    __rapydscript_print("CreepManager spawned");
+    __rapydscript_print("running for " + self.room);
 };
 CreepManager.prototype.print_creeps = function print_creeps(){
     var self = this;
@@ -135,6 +138,7 @@ function main() {
     if (Game.time % 5 === 0) {
         __rapydscript_print(Game.time);
     }
-    manager = CreepManager("test");
+    manager = CreepManager();
+    manager.run("test");
 }
 module.exports.loop = main();
