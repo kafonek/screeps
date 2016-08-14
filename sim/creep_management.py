@@ -12,15 +12,18 @@ class CreepManager:
 
 
 	def spawnManager(self):
-		creep = new Duder()
+		creep = new Unit(self.spawn)
 		print(creep)
 
-class Duder:
-	def __init__(self):
+class Unit:
+	"I'd call this a Creep but it breaks the game?"
+	def __init__(self, spawner):
 		self.body = []
+		self.spawner = spawner
+		print(self.spawner._name)
 
 
-class BasicHarvester(Duder):
+class BasicHarvester(Unit):
 	pass
 
 
