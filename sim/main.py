@@ -1,4 +1,4 @@
-print = console.log
+__rapydscript_print = console.log
 
 def main():
 
