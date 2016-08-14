@@ -109,11 +109,6 @@ RoomManager.prototype.__init__ = function __init__(roomname){
     self.creeps = self.room.find(FIND_MY_CREEPS);
     self.spawn = self.room.find(FIND_MY_SPAWNS)[0];
     self.test = [];
-    if (Game.time % 10 === 0) {
-        __rapydscript_print(self.spawn._name);
-        __rapydscript_print(dir(self.spawn));
-        __rapydscript_print(self.spawn.energy);
-    }
     self.spawnManager();
     self.behaviorManager();
 };
