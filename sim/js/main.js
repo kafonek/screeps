@@ -57,9 +57,9 @@ function eq(a, b) {
                 }
             }
         } else {
-            var __rapydscript_Iter2 = __rapydscript_Iterable(a);
-            for (var __rapydscript_Index2 = 0; __rapydscript_Index2 < __rapydscript_Iter2.length; __rapydscript_Index2++) {
-                i = __rapydscript_Iter2[__rapydscript_Index2];
+            var __rapydscript_Iter4 = __rapydscript_Iterable(a);
+            for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
+                i = __rapydscript_Iter4[__rapydscript_Index4];
                 if (!eq(a[i], b[i])) {
                     return false;
                 }
@@ -95,8 +95,15 @@ function __rapydscript_extends(child, parent) {
 var __name__ = "__main__";
 
 function main() {
+    var name;
     if (Game.time % 5 === 0) {
         console.log(Game.time);
+    }
+    var __rapydscript_Iter5 = __rapydscript_Iterable(Game.rooms);
+    for (var __rapydscript_Index5 = 0; __rapydscript_Index5 < __rapydscript_Iter5.length; __rapydscript_Index5++) {
+        name = __rapydscript_Iter5[__rapydscript_Index5];
+        console.log(name);
+        console.log(Game.rooms[name].energyAvailable);
     }
 }
 module.exports.loop = main();
