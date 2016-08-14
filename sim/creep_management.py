@@ -26,6 +26,7 @@ class _Creep:
 	name = None
 	def __init__(self, spawner):
 		self.spawner = spawner
+		self.memory['type'] = self.__class__
 		
 	def spawn(self):
 		resp = self.spawner.canCreateCreep(self.body, self.name)
