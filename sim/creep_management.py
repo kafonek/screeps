@@ -86,10 +86,8 @@ class BasicHarvesterBehavior(_CreepBehavior):
 		
 	def tick(self):
 		creep = self.creep
-		console.log(creep.carry)
-		console.log(creep.energyCapacity)
 
-		if creep.carry < creep.energyCapacity:
+		if creep.carry < creep.carryCapacity:
 			energy = self.find_closest_energy()
 			resp = creep.harvest(energy)
 			if resp == ERR_NOT_IN_RANGE:
