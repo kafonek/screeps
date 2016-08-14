@@ -4,6 +4,7 @@ class CreepManager:
 		self.creeps = self.room.find(FIND_MY_CREEPS)
 		self.spawn = self.room.find(FIND_MY_SPAWNS)[0]
 		if Game.time % 10 == 0:
+			print(self.spawn._name)
 			print(dir(self.spawn))
 			print(self.spawn.energy)
 			self.spawnManager()
