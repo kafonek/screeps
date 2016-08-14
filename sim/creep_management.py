@@ -17,7 +17,6 @@ class CreepManager:
 		
 
 class Creep:
-	body = []
 	def __init__(self, spawner):
 		self.spawner = spawner
 		
@@ -31,6 +30,6 @@ class Creep:
 			self.spawner.createCreep(self.body)
 
 class BasicHarvester(Creep):
-	body = [WORK, CARRY, MOVE]
+	pass
 
 
