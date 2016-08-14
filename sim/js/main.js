@@ -57,9 +57,9 @@ function eq(a, b) {
                 }
             }
         } else {
-            var __rapydscript_Iter2 = __rapydscript_Iterable(a);
-            for (var __rapydscript_Index2 = 0; __rapydscript_Index2 < __rapydscript_Iter2.length; __rapydscript_Index2++) {
-                i = __rapydscript_Iter2[__rapydscript_Index2];
+            var __rapydscript_Iter3 = __rapydscript_Iterable(a);
+            for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
+                i = __rapydscript_Iter3[__rapydscript_Index3];
                 if (!eq(a[i], b[i])) {
                     return false;
                 }
@@ -126,9 +126,9 @@ RoomManager.prototype.behaviorManager = function behaviorManager(){
     classmap = {
         "BasicHarvester": BasicHarvesterBehavior
     };
-    var __rapydscript_Iter3 = __rapydscript_Iterable(self.creeps);
-    for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
-        creep = __rapydscript_Iter3[__rapydscript_Index3];
+    var __rapydscript_Iter4 = __rapydscript_Iterable(self.creeps);
+    for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
+        creep = __rapydscript_Iter4[__rapydscript_Index4];
         cls = creep.memory.class;
         if (__rapydscript_in(cls, classmap)) {
             behavior = classmap[cls];
@@ -183,6 +183,29 @@ _CreepBehavior.prototype.__init__ = function __init__(room, creep){
     self.creep = creep;
     self.memory = creep.memory;
 };
+_CreepBehavior.prototype._tick = function _tick(){
+    var self = this;
+    var word;
+    if (__rapydscript_in("to_say", self.memory)) {
+        if (len(self.memory["to_say"]) > 0) {
+            word = self.memory["to_say"].pop(0);
+            self.creep.say(word);
+        }
+    }
+    self.tick();
+};
+_CreepBehavior.prototype.speak = function speak(sentence){
+    var self = this;
+    var word;
+    if (!(__rapydscript_in("to_say", self.memory))) {
+        self.memory["to_say"] = [];
+    }
+    var __rapydscript_Iter5 = __rapydscript_Iterable(sentence.split());
+    for (var __rapydscript_Index5 = 0; __rapydscript_Index5 < __rapydscript_Iter5.length; __rapydscript_Index5++) {
+        word = __rapydscript_Iter5[__rapydscript_Index5];
+        self.memory["to_say"].append(word);
+    }
+};
 _CreepBehavior.prototype._get = function _get(key){
     var self = this;
     "Retrieve an object from persistent memory";
@@ -228,19 +251,19 @@ BasicHarvesterBehavior.prototype.tick = function tick(){
         energy = self.find_closest_energy();
         resp = creep.harvest(energy);
         if (resp === ERR_NOT_IN_RANGE) {
-            creep.say("going out");
+            creep.say("Off To Work");
             creep.moveTo(energy);
         } else {
-            creep.say("harvesting");
+            creep.say("Harvest Erry Day");
         }
     } else {
         spawn = self.find_closest_spawn();
         resp = creep.transfer(spawn, RESOURCE_ENERGY);
         if (resp === ERR_NOT_IN_RANGE) {
-            creep.say("returning");
+            creep.say("On My Way Home");
             creep.moveTo(spawn);
         } else {
-            creep.say("transferring");
+            creep.say("Dump!");
         }
     }
 };
@@ -248,9 +271,9 @@ BasicHarvesterBehavior.prototype.tick = function tick(){
 __rapydscript_print = console.log;
 function main() {
     var manager, room;
-    var __rapydscript_Iter4 = __rapydscript_Iterable(Game.rooms);
-    for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
-        room = __rapydscript_Iter4[__rapydscript_Index4];
+    var __rapydscript_Iter6 = __rapydscript_Iterable(Game.rooms);
+    for (var __rapydscript_Index6 = 0; __rapydscript_Index6 < __rapydscript_Iter6.length; __rapydscript_Index6++) {
+        room = __rapydscript_Iter6[__rapydscript_Index6];
         manager = new RoomManager(room);
     }
 }

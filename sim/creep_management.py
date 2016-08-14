@@ -56,6 +56,20 @@ class _CreepBehavior:
 		self.creep = creep
 		self.memory = creep.memory
 
+	def _tick(self):
+		if 'to_say' in self.memory:
+			if len(self.memory['to_say']) > 0:
+				word = self.memory['to_say'].pop(0)
+				self.creep.say(word)
+		self.tick()
+
+	def speak(self, sentence):
+		if 'to_say' not in self.memory:
+			self.memory['to_say'] = []
+		for word in sentence.split():
+			self.memory['to_say'].append(word)
+
+
 	def _get(self, key):
 		"Retrieve an object from persistent memory"
 		if key in self.memory:
@@ -87,18 +101,18 @@ class BasicHarvesterBehavior(_CreepBehavior):
 			energy = self.find_closest_energy()
 			resp = creep.harvest(energy)
 			if resp == ERR_NOT_IN_RANGE:
-				creep.say("going out")
+				creep.say("Off To Work")
 				creep.moveTo(energy)
 			else:
-				creep.say("harvesting")
+				creep.say("Harvest Erry Day")
 		else:
 			spawn = self.find_closest_spawn()
 			resp = creep.transfer(spawn, RESOURCE_ENERGY)
 			if resp == ERR_NOT_IN_RANGE:
-				creep.say("returning")
+				creep.say("On My Way Home")
 				creep.moveTo(spawn)
 			else:
-				creep.say("transferring")
+				creep.say("Dump!")
 
 
 
