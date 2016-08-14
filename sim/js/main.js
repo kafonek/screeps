@@ -115,14 +115,14 @@ CreepManager.prototype.print_creeps = function print_creeps(){
 
 __rapydscript_print = console.log;
 function main() {
-    var manager, name;
+    var name;
     if (Game.time % 5 === 0) {
         __rapydscript_print(Game.time);
     }
     var __rapydscript_Iter4 = __rapydscript_Iterable(Game.rooms);
     for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
         name = __rapydscript_Iter4[__rapydscript_Index4];
-        manager = CreepManager();
+        __rapydscript_print(name);
     }
 }
 module.exports.loop = main();
