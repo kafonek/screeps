@@ -128,8 +128,8 @@ function Creep() {
 Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
-    self.body = [];
-    self.memory = {};
+    self.body = new []();
+    self.memory = new {}();
     self.name = null;
 };
 Creep.prototype.custom_configs = function custom_configs(){

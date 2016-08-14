@@ -19,8 +19,8 @@ class CreepManager:
 class Creep:
 	def __init__(self, spawner):
 		self.spawner = spawner
-		self.body = []
-		self.memory = {}
+		self.body = new []
+		self.memory = new {}
 		self.name = None
 
 	def custom_configs(self):
