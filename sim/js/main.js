@@ -127,19 +127,17 @@ RoomManager.prototype.spawnManager = function spawnManager(){
 };
 RoomManager.prototype.behaviorManager = function behaviorManager(){
     var self = this;
-    var roles, role, behavior, creep;
-    roles = {
-        "BasicHarvester": harvest
+    var classmap, cls, behavior, creep;
+    classmap = {
+        "BasicHarvester": BasicHarvesterBehavior
     };
     var __rapydscript_Iter3 = __rapydscript_Iterable(self.creeps);
     for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
         creep = __rapydscript_Iter3[__rapydscript_Index3];
-        if (Game.time % 5 === 0) {
-            role = creep.memory.role;
-            if (__rapydscript_in(role, roles)) {
-                behavior = roles[role];
-                behavior(creep);
-            }
+        cls = creep.memory.class;
+        if (__rapydscript_in(cls, classmap)) {
+            behavior = classmap[cls](self.room, creep);
+            behavior.tick();
         }
     }
 };
@@ -150,7 +148,7 @@ function _Creep() {
 "I'd call this a Creep but it breaks the game?";
 _Creep.prototype.body = [];
 _Creep.prototype.memory = {
-    "role": "AbstractBaseCreep"
+    "class": "AbstractBaseCreep"
 };
 _Creep.prototype.name = null;
 _Creep.prototype.__init__ = function __init__(spawner){
@@ -177,12 +175,30 @@ function BasicHarvester() {
 __rapydscript_extends(BasicHarvester, _Creep);
 BasicHarvester.prototype.body = [ WORK, MOVE, CARRY ];
 BasicHarvester.prototype.memory = {
-    "role": "BasicHarvester"
+    "class": "BasicHarvester"
 };
 
-function harvest(creep) {
-    creep.say("hello world");
+function CreepBehavior() {
+    CreepBehavior.prototype.__init__.apply(this, arguments);
 }
+CreepBehavior.prototype.__init__ = function __init__(room, creep){
+    var self = this;
+    self.room = room;
+    self.creep = creep;
+    self.memory = creep.memory;
+};
+
+function BasicHarvesterBehavior() {
+    BasicHarvesterBehavior.prototype.__init__.apply(this, arguments);
+}
+__rapydscript_extends(BasicHarvesterBehavior, CreepBehavior);
+BasicHarvesterBehavior.prototype.tick = function tick(){
+    var self = this;
+    if (Game.time % 5 === 0) {
+        self.creep.say(Game.time);
+    }
+};
+
 __rapydscript_print = console.log;
 function main() {
     var manager, room;

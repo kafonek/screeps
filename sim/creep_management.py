@@ -20,20 +20,19 @@ class RoomManager:
 
 	def behaviorManager(self):
 		### Can't think of a more elegant way to work this right now
-		roles = {'BasicHarvester' : harvest}
+		classmap = {'BasicHarvester' : BasicHarvesterBehavior}
 		for creep in self.creeps:
-			if Game.time % 5 == 0:
-				role = creep.memory.role
-				if role in roles:
-					behavior = roles[role]
-					behavior(creep)
+			cls = creep.memory.class
+			if cls in classmap:
+				behavior = classmap[cls](self.room, creep)
+				behavior.tick()
 
 			
 ### Deals with Creep Creation			
 class _Creep:
 	"I'd call this a Creep but it breaks the game?"
 	body = []
-	memory = {'role' : 'AbstractBaseCreep'} # Override this in subclasses
+	memory = {'class' : 'AbstractBaseCreep'} # Override this in subclasses
 	name = None
 	def __init__(self, spawner):
 		self.spawner = spawner
@@ -51,9 +50,19 @@ class _Creep:
 
 class BasicHarvester(_Creep):
 	body = [WORK, MOVE, CARRY]
-	memory = {'role': 'BasicHarvester'}
+	memory = {'class': 'BasicHarvester'}
+
+### Deals with Creep Behavior
+class CreepBehavior:
+	def __init__(self, room, creep):
+		self.room = room
+		self.creep = creep
+		self.memory = creep.memory
+
+class BasicHarvesterBehavior(CreepBehavior):
+	def tick(self):
+		if Game.time % 5 == 0:
+			self.creep.say(Game.time)
 
 
-### Creep behavior actions
-def harvest(creep):
-	creep.say("hello world")
+
