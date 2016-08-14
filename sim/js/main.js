@@ -229,7 +229,7 @@ BasicHarvesterBehavior.prototype.tick = function tick(){
     var self = this;
     var creep, energy, spawn, resp;
     creep = self.creep;
-    if (creep.carry < creep.carryCapacity) {
+    if (_sum(creep.carry) < creep.carryCapacity) {
         energy = self.find_closest_energy();
         resp = creep.harvest(energy);
         if (resp === ERR_NOT_IN_RANGE) {
