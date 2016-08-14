@@ -18,7 +18,7 @@ class CreepManager:
 
 class Creep:
 	def __init__(self, spawner):
-		self.spawner = spawner
+		self.spawner = Game.spawns[spawner]
 		self.body = [WORK, MOVE, CARRY]
 
 		

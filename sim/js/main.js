@@ -127,7 +127,7 @@ function Creep() {
 }
 Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
-    self.spawner = spawner;
+    self.spawner = Game.spawns[spawner];
     self.body = [ WORK, MOVE, CARRY ];
 };
 Creep.prototype.spawn = function spawn(){
