@@ -104,7 +104,6 @@ function CreepManager() {
 }
 CreepManager.prototype.__init__ = function __init__(room){
     var self = this;
-    self.room = null;
     self.room = room;
     __rapydscript_print("CreepManager spawned");
 };
@@ -115,14 +114,14 @@ CreepManager.prototype.print_creeps = function print_creeps(){
 
 __rapydscript_print = console.log;
 function main() {
-    var name;
+    var manager, name;
     if (Game.time % 5 === 0) {
         __rapydscript_print(Game.time);
     }
     var __rapydscript_Iter4 = __rapydscript_Iterable(Game.rooms);
     for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
         name = __rapydscript_Iter4[__rapydscript_Index4];
-        __rapydscript_print(name);
+        manager = CreepManager(Games.rooms[name]);
     }
 }
 module.exports.loop = main();
