@@ -125,12 +125,16 @@ CreepManager.prototype.spawnManager = function spawnManager(){
 function Creep() {
     Creep.prototype.__init__.apply(this, arguments);
 }
-Creep.prototype.body = [];
-Creep.prototype.memory = {};
-Creep.prototype.name = null;
 Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
+    self.body = [];
+    self.memory = {};
+    self.name = null;
+};
+Creep.prototype.custom_configs = function custom_configs(){
+    var self = this;
+    "Override this in subclasses";
 };
 Creep.prototype.spawn = function spawn(){
     var self = this;
@@ -145,9 +149,12 @@ function BasicHarvester() {
     BasicHarvester.prototype.__init__.apply(this, arguments);
 }
 __rapydscript_extends(BasicHarvester, Creep);
-BasicHarvester.prototype.body = [ MOVE, WORK, CARRY ];
-BasicHarvester.prototype.memory = {
-    "role": "harvester"
+BasicHarvester.prototype.custom_configs = function custom_configs(){
+    var self = this;
+    self.body = [ WORK, CARRY, MOVE ];
+    self.memory = {
+        "role": "harvester"
+    };
 };
 
 function roleHarvester() {
