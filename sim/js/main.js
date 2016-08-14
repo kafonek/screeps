@@ -110,7 +110,6 @@ CreepManager.prototype.__init__ = function __init__(roomname){
     if (Game.time % 10 === 0) {
         __rapydscript_print(dir(self.spawn));
         __rapydscript_print(self.spawn.energy);
-        __rapydscript_print(self.spawn.canCreateCreep);
     }
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
