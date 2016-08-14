@@ -153,6 +153,7 @@ _Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
     self.spawner = spawner;
     self.type = self.__class__;
+    self.memory = self.memory;
     self.memory["type"] = self.type;
 };
 _Creep.prototype.spawn = function spawn(){
