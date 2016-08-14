@@ -6,37 +6,26 @@ class CreepManager:
 		if Game.time % 10 == 0:
 			print(dir(self.spawn))
 			print(self.spawn.energy)
-		self.spawnManager()
+			self.spawnManager()
 
 
 	def spawnManager(self):
 		if len(self.creeps) < 2:
-			creep = new Creep()
-			resp = self.spawn.canCreateCreep(creep.body)
-			print(resp)
-			if resp == OK:
-				self.spawn.createCreep(creep.body, creep.name, creep.memory)
+			creep = new Creep(self.spawn)
+
+			
 			
 
 		
 
 class Creep:
-	@property
-	def body(self):
-		return []
-
-	@property
-	def memory(self):
-		return {}
-
-	@property
-	def name(self):
-		return None
+	def __init__(self, spawner):
+		self.spawner = spawner
+		print(spawner)
+		print(dir(spawner))
 
 
 class BasicHarvester(Creep):
-	@property
-	def body(self):
-		return [WORK, CARRY, MOVE]
+	pass
 
 

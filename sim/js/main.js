@@ -110,49 +110,32 @@ CreepManager.prototype.__init__ = function __init__(roomname){
     if (Game.time % 10 === 0) {
         __rapydscript_print(dir(self.spawn));
         __rapydscript_print(self.spawn.energy);
+        self.spawnManager();
     }
-    self.spawnManager();
 };
 CreepManager.prototype.spawnManager = function spawnManager(){
     var self = this;
-    var creep, resp;
+    var creep;
     if (len(self.creeps) < 2) {
-        creep = new Creep();
-        resp = self.spawn.canCreateCreep(creep.body);
-        __rapydscript_print(resp);
-        if (resp === OK) {
-            self.spawn.createCreep(creep.body, creep.name, creep.memory);
-        }
+        creep = new Creep(self.spawn);
     }
 };
 
 function Creep() {
+    Creep.prototype.__init__.apply(this, arguments);
 }
-
-
-
-Creep.prototype.body = property(function body(){
+Creep.prototype.__init__ = function __init__(spawner){
     var self = this;
-    return [];
-});
-Creep.prototype.memory = property(function memory(){
-    var self = this;
-    return {};
-});
-Creep.prototype.name = property(function name(){
-    var self = this;
-    return null;
-});
+    self.spawner = spawner;
+    __rapydscript_print(spawner);
+    __rapydscript_print(dir(spawner));
+};
 
 function BasicHarvester() {
     BasicHarvester.prototype.__init__.apply(this, arguments);
 }
 __rapydscript_extends(BasicHarvester, Creep);
 
-BasicHarvester.prototype.body = property(function body(){
-    var self = this;
-    return [ WORK, CARRY, MOVE ];
-});
 
 function roleHarvester() {
 }
