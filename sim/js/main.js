@@ -210,7 +210,7 @@ BasicHarvesterBehavior.prototype.find_closest_spawn = function find_closest_spaw
     var spawn;
     spawn = self._get("closest_spawn");
     if (!spawn) {
-        spawn = self.room.findClosestByPath(FIND_MY_SPAWNS);
+        spawn = self.creep.pos.findClosestByPath(FIND_MY_SPAWNS);
         self._set("closest_spawn", spawn);
     }
     return spawn;
