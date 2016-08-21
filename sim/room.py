@@ -1,15 +1,11 @@
-def memcache(fn, mem_name):
+def memcache(fn):
+	print("In memcache of " + fn)
 	def wrapped(self, *args, **kwargs):
-		if mem_name in self.memory:
-			return self.memory[mem_name]
-		else:
-			result = fn(self, *args, **kwargs)
-			self.memory[mem_name] = result
-			return result
+		return fn(self, *args, **kwargs)
 
 class Room:
 	
-	@memcache('creep_count')
+	@memcache
 	def stats(self):
 		return {'creep_count' : len(self.find(FIND_MY_CREEPS))}
 			
