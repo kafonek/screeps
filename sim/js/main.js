@@ -207,12 +207,13 @@ BasicHarvesterBehavior.prototype.tick = function tick(){
 
 function Room() {
 }
-Room.prototype.stats = function stats(){
+
+Room.prototype.stats = memcache(function stats(){
     var self = this;
     return {
         "creep_count": len(self.find(FIND_MY_CREEPS))
     };
-};
+});
 
 __rapydscript_print = console.log;
 function main() {
