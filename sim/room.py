@@ -1,7 +1,7 @@
-#def memcache(fn):
-#	print("In memcache of " + fn)
-#	def wrapped(self, *args, **kwargs):
-#		return fn(self, *args, **kwargs)
+def memcache(fn):
+	print("In memcache of " + fn)
+	def wrapped(self, *args, **kwargs):
+		return fn(self, *args, **kwargs)
 
 class Room:
 	

@@ -57,9 +57,9 @@ function eq(a, b) {
                 }
             }
         } else {
-            var __rapydscript_Iter3 = __rapydscript_Iterable(a);
-            for (var __rapydscript_Index3 = 0; __rapydscript_Index3 < __rapydscript_Iter3.length; __rapydscript_Index3++) {
-                i = __rapydscript_Iter3[__rapydscript_Index3];
+            var __rapydscript_Iter1 = __rapydscript_Iterable(a);
+            for (var __rapydscript_Index1 = 0; __rapydscript_Index1 < __rapydscript_Iter1.length; __rapydscript_Index1++) {
+                i = __rapydscript_Iter1[__rapydscript_Index1];
                 if (!eq(a[i], b[i])) {
                     return false;
                 }
@@ -204,18 +204,3 @@ BasicHarvesterBehavior.prototype.tick = function tick(){
         }
     }
 };
-
-function Room() {
-}
-
-Room.prototype.stats = memcache(function stats(){
-    var self = this;
-    return {
-        "creep_count": len(self.find(FIND_MY_CREEPS))
-    };
-});
-
-__rapydscript_print = console.log;
-function main() {
-}
-module.exports.loop = main();
