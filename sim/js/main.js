@@ -216,11 +216,5 @@ Room.prototype.stats = function stats(){
 
 __rapydscript_print = console.log;
 function main() {
-    var manager, room;
-    var __rapydscript_Iter4 = __rapydscript_Iterable(Game.rooms);
-    for (var __rapydscript_Index4 = 0; __rapydscript_Index4 < __rapydscript_Iter4.length; __rapydscript_Index4++) {
-        room = __rapydscript_Iter4[__rapydscript_Index4];
-        manager = new _Room(room);
-    }
 }
 module.exports.loop = main();
